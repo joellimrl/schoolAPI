@@ -3,7 +3,7 @@ import Logger from '../config/logger';
 import sequelize from '../config/database';
 
 const LOG = new Logger('RegistrationService.ts');
-export const WorkloadService = async (): Promise<Workload | number> => {
+export const WorkloadService = async (): Promise<Workload> => {
   try {
     const Subjects = sequelize.models.Subjects;
     const subjects = await Subjects.findAll();
