@@ -5,11 +5,15 @@ import sequelize from '../config/database';
 const LOG = new Logger('RegistrationService.ts');
 export const WorkloadService = async (): Promise<Workload> => {
   try {
+    LOG.info('START');
     const Subjects = sequelize.models.Subjects;
+    LOG.info('Retrieving all entries in SUBJECTS table');
     const subjects = await Subjects.findAll();
+    LOG.info('Successfully retrieved');
 
     const response: Workload = {};
     // Transform data to required output format
+    LOG.info('Transforming Data');
     subjects.forEach((entry) => {
       const teacherName = entry.getDataValue('teacherName');
       const subjectName = entry.getDataValue('subjectName');
@@ -38,6 +42,7 @@ export const WorkloadService = async (): Promise<Workload> => {
         ];
       }
     });
+    LOG.info('END');
     return response;
   } catch (e) {
     LOG.error(`Error: ${e}`);

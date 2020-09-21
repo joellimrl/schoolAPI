@@ -6,7 +6,9 @@ const LOG = new Logger('RegistrationService.ts');
 export const RegistrationService = async (
   body: Registration
 ): Promise<void> => {
+  LOG.info('START');
   try {
+    LOG.info('Updating SUBJECTS Table');
     const Subjects = sequelize.models.Subjects;
     // Use findOrCreate to prevent duplicates
     await Subjects.findOrCreate({
@@ -21,6 +23,7 @@ export const RegistrationService = async (
     });
 
     // If this update fails and throws error, Subjects table will still be updated (to take note)
+    LOG.info('Updating STUDENTS Table');
     const { students } = body;
     const Students = sequelize.models.Students;
     for (let i = 0; i < students.length; i++) {
@@ -33,6 +36,7 @@ export const RegistrationService = async (
         },
       });
     }
+    LOG.info('END');
   } catch (e) {
     LOG.error(`Error: ${e}`);
     throw e;

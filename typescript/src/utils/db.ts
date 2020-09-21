@@ -5,15 +5,6 @@ import Logger from '../config/logger';
 const LOG = new Logger('DBUtils.ts');
 export const DBUtils = async (): Promise<void> => {
   try {
-    // const Teachers = sequelize.define('Teachers', {
-    //   name: {
-    //     type: DataTypes.STRING,
-    //   },
-    //   email: {
-    //     type: DataTypes.STRING,
-    //   },
-    // });
-
     // Define STUDENTS table in DB
     // Each row contains a student entry
     // There can be multiple entries for the same student due to multiple subjects
